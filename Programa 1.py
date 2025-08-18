@@ -1,9 +1,9 @@
 Usuarios = {}
 print("Cajero Automatico")
 
-def NuevoUsuario(Nombre, ID, PIN):
+def NuevoUsuario(Nombre, ID, PIN, MontoI):
     print(f"Nombre: {nombre}, ID: {id}, Pin: ****")
-    Usuarios[nombre] = {"Id" : id, "Pin": pin}
+    Usuarios[Nombre] = {"Id" : ID, "Pin": PIN, "Monto": MontoI}
 
 while True:
     print("Ingrese una opcion")
@@ -32,7 +32,10 @@ while True:
 
         print("ingrese un pin")
         pin = int(input())
-        
-        NuevoUsuario(nombre, id, pin)
+
+        print("Ingrese su monto inicial")
+        montoI = float(input())
+
+        NuevoUsuario(nombre, id, pin, montoI)
     elif opcion == 6:
         break
