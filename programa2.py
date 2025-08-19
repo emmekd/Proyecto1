@@ -2,9 +2,14 @@
 
 #Diccionario de Usuario
 Usuarios = {}
+
+#Contador
 contador_id = 1000000  # ID inicial
 
 print("--- Cajero Automático ---")
+
+#Funciones
+#Agregar nuevo usuario
 
 def NuevoUsuario(nombre, id, pin, montoI=0):
     if nombre in Usuarios:
@@ -13,6 +18,8 @@ def NuevoUsuario(nombre, id, pin, montoI=0):
         Usuarios[nombre] = {"Id": id, "Pin": pin, "Saldo": montoI}
         print(f"Usuario creado: {nombre}, ID: {id}, Pin: ****, Saldo inicial: Q{montoI:.2f}")
 
+
+#Menu de usuario
 while True:
     print("\nOpciones:")
     print("1 = Retirar dinero")
@@ -21,7 +28,8 @@ while True:
     print("4 = Cambiar PIN")
     print("5 = Crear nuevo usuario")
     print("6 = Salir")
-
+    
+    #Validacion de errores
     try:
         opcion = int(input("Opción: "))
     except ValueError:
