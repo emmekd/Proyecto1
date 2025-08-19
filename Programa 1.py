@@ -1,6 +1,10 @@
 Usuarios = {}
 print("Cajero Automatico")
 
+def NuevoUsuario(Nombre, ID, PIN, MontoI):
+    print(f"Nombre: {nombre}, su ID es: {id}, Pin: ****")
+    Usuarios[Nombre] = {"Id" : ID, "Pin": PIN, "Monto": MontoI}
+
 def IniciarSesion():
     buscar = input("ingrese el nombre de usuario").title()
     if buscar in Usuarios:
@@ -9,15 +13,15 @@ def IniciarSesion():
             print("Se pudo iniciar sesion")
             return buscar
 
-def NuevoUsuario(Nombre, ID, PIN, MontoI):
-    print(f"Nombre: {nombre}, su ID es: {id}, Pin: ****")
-    Usuarios[Nombre] = {"Id" : ID, "Pin": PIN, "Monto": MontoI}
-
 def ConsultarSaldo():
     usuario = IniciarSesion()
     if usuario:
         print(f"Su saldo es {Usuarios[usuario]['Monto']}")
 
+def CambiarPin(NuevoPin):
+    usuario = IniciarSesion()
+    if usuario:
+        Usuarios[usuario]['Pin'] = NuevoPin
 
 while True:
     print("Ingrese una opcion")
@@ -36,7 +40,8 @@ while True:
     elif opcion == 3:
         ConsultarSaldo()
     elif opcion == 4:
-        print()
+        NuevoPin = input("Ingrese su nuevo Pin")
+        CambiarPin(NuevoPin)
     elif opcion == 5:
         import random
         id = random.randint(1000000, 9999999)
