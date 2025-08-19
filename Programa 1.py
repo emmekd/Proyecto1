@@ -6,7 +6,10 @@ def NuevoUsuario(Nombre, ID, PIN, MontoI):
     Usuarios[Nombre] = {"Id": ID, "Pin": PIN, "Monto": MontoI}
 
 def IniciarSesion():
-    buscar = input("ingrese el nombre de usuario").title()
+    try:
+        buscar = input("ingrese el nombre de usuario").title()
+    except ValueError:
+        print("Ingrese un nombre valido")
     if buscar in Usuarios:
         contraseña = int(input("ingrese su pin"))
         if contraseña == Usuarios[buscar]["Pin"]:
@@ -29,10 +32,20 @@ def IngresarMonto(NuevoMonto):
         Usuarios[usuario]['Monto'] += NuevoMonto
 
 def RetirarMonto(Retirar):
-    usuario = IniciarSesion()
-    if usuario:
+    def retirar():
         Usuarios[usuario]['Monto'] -= Retirar
         print(f"Ha retirado {Retirar}, su saldo actual es: {Usuarios[usuario]['Monto']}")
+    usuario = IniciarSesion()
+    if usuario and Retirar <= Usuarios[usuario]['Monto']:
+        retirar()
+    elif usuario and Retirar > Usuarios[usuario]['Monto']:
+        while Retirar > Usuarios[usuario]['Monto']:
+            Retirar = input("Ingrese un monto valido para retirar")
+            if Retirar <= Usuarios[usuario]['Monto']:
+                retirar()
+                break
+    elif not usuario:
+        print("El usuario no existe")
 
 while True:
     print("Ingrese una opcion")
@@ -71,3 +84,5 @@ while True:
         NuevoUsuario(nombre, id, pin, montoI)
     elif opcion == 6:
         break
+    else:
+        print("Opcion Invalida")
