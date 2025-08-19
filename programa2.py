@@ -1,6 +1,3 @@
-#Flujo Principal
-
-#Diccionario de Usuario
 Usuarios = {}
 contador_id = 1000000  # ID inicial
 
@@ -12,7 +9,7 @@ def NuevoUsuario(nombre, id, pin, montoI=0):
     else:
         Usuarios[nombre] = {"Id": id, "Pin": pin, "Saldo": montoI}
         print(f"Usuario creado: {nombre}, ID: {id}, Pin: ****, Saldo inicial: Q{montoI:.2f}")
-
+#Menú para el usuarios
 while True:
     print("\nOpciones:")
     print("1 = Retirar dinero")
@@ -21,7 +18,7 @@ while True:
     print("4 = Cambiar PIN")
     print("5 = Crear nuevo usuario")
     print("6 = Salir")
-
+#Validaciones
     try:
         opcion = int(input("Opción: "))
     except ValueError:
