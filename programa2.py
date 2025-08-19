@@ -1,4 +1,3 @@
-
 Usuarios = {}
 print("Cajero Automatico")
 
