@@ -23,6 +23,12 @@ def CambiarPin(NuevoPin):
     if usuario:
         Usuarios[usuario]['Pin'] = NuevoPin
 
+def IngresarMonto(NuevoMonto):
+    usuario = IniciarSesion()
+    if usuario:
+        Usuarios[usuario]['Monto'] += NuevoMonto
+
+
 while True:
     print("Ingrese una opcion")
     print("1 = Retirar dinero")
@@ -38,7 +44,8 @@ while True:
     elif opcion == 2:
         print()
     elif opcion == 3:
-        ConsultarSaldo()
+        MontoNuevo = int(input())
+        IngresarMonto(MontoNuevo)
     elif opcion == 4:
         NuevoPin = input("Ingrese su nuevo Pin")
         CambiarPin(NuevoPin)
