@@ -1,46 +1,29 @@
-<<<<<<< Updated upstream
-=======
-import random
-
->>>>>>> Stashed changes
 Usuarios = {}
-print("Cajero Automático")
+contador_id = 1000000  # ID inicial
 
-def NuevoUsuario(nombre, id, pin):
+print("--Cajero Automático--")
+def NuevoUsuario(nombre, id, pin, montoI=0):
     if nombre in Usuarios:
-        print("El usuario ya existe")
+        print("El usuario ya existe.")
     else:
-        Usuarios[nombre] = {"Id": id, "Pin": pin, "Saldo": 0}  # saldo inicial
-        print(f"Usuario creado: {nombre}, ID: {id}, Pin: ****")
-
-def NuevoUsuario(nombre, id, pin, MontoI=0):
-    Usuarios[nombre] = {"Id": id, "Pin": pin, "Saldo": MontoI}
-    print(f"Usuario creado: {nombre}, ID: {id}, Pin: ****")
-
-def ConsultarSaldo():
-    buscar = input("ingrese el nombre de usuario").title()
-    for clave, valor in Usuarios.items():
-        if buscar == clave:
-            contraseña = int(input("ingrese su pin"))
-            if contraseña == clave["Pin"]:
-                print(f"su saldo es {clave["Monto"]}")
+        Usuarios[nombre] = {"Id": id, "Pin": pin, "Saldo": montoI}
+        print(f"Usuario creado: {nombre}, ID: {id}, Pin: ****, Saldo inicial: Q{montoI:.2f}")
 
 while True:
-    print("\nIngrese una opción")
+    print("Opciones:")
     print("1 = Retirar dinero")
     print("2 = Ingresar dinero")
-    print("3 = Consultar Saldo")
+    print("3 = Consultar saldo")
     print("4 = Cambiar PIN")
-    print("5 = Ingresar nuevo usuario")
+    print("5 = Crear nuevo usuario")
     print("6 = Salir")
 
     try:
         opcion = int(input("Opción: "))
     except ValueError:
-        print("Debe ingresar un número (1-6).")
+        print("Debe ingresar un número del 1 al 6.")
         continue
 
-    # Opciones que requieren usuario
     if opcion in [1, 2, 3, 4]:
         if not Usuarios:
             print("No hay usuarios registrados.")
@@ -61,33 +44,32 @@ while True:
             print("PIN incorrecto.")
             continue
 
-        # Acciones según opción
         if opcion == 1:  # Retirar
             try:
-                monto = float(input("Ingrese monto a retirar: "))
+                monto = float(input("Monto a retirar: "))
                 if monto <= 0:
                     print("El monto debe ser positivo.")
                 elif monto > Usuarios[nombre]["Saldo"]:
                     print("Fondos insuficientes.")
                 else:
                     Usuarios[nombre]["Saldo"] -= monto
-                    print(f"Retiro exitoso. Saldo: {Usuarios[nombre]['Saldo']}")
+                    print(f"Retiro exitoso. Saldo actual: Q{Usuarios[nombre]['Saldo']:.2f}")
             except ValueError:
-                print("El monto debe ser numérico.")
+                print("Monto inválido.")
 
         elif opcion == 2:  # Ingresar
             try:
-                monto = float(input("Ingrese monto a depositar: "))
+                monto = float(input("Monto a depositar: "))
                 if monto <= 0:
                     print("El monto debe ser positivo.")
                 else:
                     Usuarios[nombre]["Saldo"] += monto
-                    print(f"Depósito exitoso. Saldo: {Usuarios[nombre]['Saldo']}")
+                    print(f"Depósito exitoso. Saldo actual: Q{Usuarios[nombre]['Saldo']:.2f}")
             except ValueError:
-                print("El monto debe ser numérico.")
+                print("Monto inválido.")
 
         elif opcion == 3:  # Consultar saldo
-            print(f"Saldo de {nombre}: {Usuarios[nombre]['Saldo']}")
+            print(f"Saldo de {nombre}: Q{Usuarios[nombre]['Saldo']:.2f}")
 
         elif opcion == 4:  # Cambiar PIN
             try:
@@ -98,38 +80,34 @@ while True:
                     Usuarios[nombre]["Pin"] = nuevo_pin
                     print("PIN actualizado correctamente.")
             except ValueError:
-                print("El PIN debe ser numérico.")
+                print("PIN inválido.")
 
     elif opcion == 5:  # Crear usuario
-        id = random.randint(1000000, 9999999)
         nombre = input("Ingrese su nombre: ").title()
-
         try:
             pin = int(input("Ingrese un PIN (4 dígitos): "))
             if len(str(pin)) != 4:
                 print("El PIN debe tener 4 dígitos.")
                 continue
         except ValueError:
-            print("El PIN debe ser numérico.")
+            print("PIN inválido.")
             continue
 
-        NuevoUsuario(nombre, id, pin)
+        try:
+            montoI = float(input("Ingrese monto inicial: "))
+            if montoI < 0:
+                print("El monto inicial no puede ser negativo.")
+                continue
+        except ValueError:
+            print("Monto inicial inválido.")
+            continue
 
+        NuevoUsuario(nombre, contador_id, pin, montoI)
+        contador_id += 1  # Incrementa ID automáticamente
 
-        print("ingrese un pin")
-        pin = int(input())
-
-        print("Ingrese su monto inicial")
-        montoI = float(input())
-
-        NuevoUsuario(nombre, id, pin, montoI)
     elif opcion == 6:
-<<<<<<< Updated upstream
-        break
-=======
-        print("Saliendo del cajero")
+        print("Saliendo del cajero.")
         break
 
     else:
         print("Opción no válida. Intente otra vez.")
->>>>>>> Stashed changes
