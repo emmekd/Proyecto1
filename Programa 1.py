@@ -15,6 +15,8 @@ def IniciarSesion():
         if contraseña == Usuarios[buscar]["Pin"]:
             print("Se pudo iniciar sesion")
             return buscar
+    else: 
+        print("El usuario no existe")
 
 def ConsultarSaldo():
     usuario = IniciarSesion()
@@ -32,20 +34,22 @@ def IngresarMonto(NuevoMonto):
         Usuarios[usuario]['Monto'] += NuevoMonto
 
 def RetirarMonto(Retirar):
-    def retirar():
-        Usuarios[usuario]['Monto'] -= Retirar
-        print(f"Ha retirado {Retirar}, su saldo actual es: {Usuarios[usuario]['Monto']}")
     usuario = IniciarSesion()
-    if usuario and Retirar <= Usuarios[usuario]['Monto']:
-        retirar()
-    elif usuario and Retirar > Usuarios[usuario]['Monto']:
-        while Retirar > Usuarios[usuario]['Monto']:
-            Retirar = input("Ingrese un monto valido para retirar")
-            if Retirar <= Usuarios[usuario]['Monto']:
-                retirar()
-                break
-    elif not usuario:
-        print("El usuario no existe")
+    def retirar():
+            Usuarios[usuario]['Monto'] -= Retirar
+            print(f"Ha retirado {Retirar}, su saldo actual es: {Usuarios[usuario]['Monto']}")
+
+    if usuario:
+        if Retirar <= Usuarios[usuario]['Monto']:
+            retirar()
+        else:
+            while True:
+                Retirar = float(input("Ingrese un monto valido para retirar: "))
+                if Retirar <= Usuarios[usuario]['Monto']:
+                    retirar()
+                    break
+                else:
+                    print("Saldo insuficiente")
 
 while True:
     print("Ingrese una opcion")
@@ -55,31 +59,75 @@ while True:
     print("4 = Cambiar pin")
     print("5 = ingresar nuevo usuario")
     print("6 = Salir")
-    opcion = int(input())
+    try:
+        opcion = int(input())
+    except ValueError:
+        print("Ingrese una opcion valida")
 
     if opcion == 1:
-        retiro = int(input("Ingrese el monto que desea retirar"))
+        while True:
+            retiro = float(input("Ingrese el monto que desea retirar"))
+            if retiro > 0:
+                break
+            else:
+                print("Ingrese un monto valido")
         RetirarMonto(retiro)
+
     elif opcion == 2:
-        MontoNuevo = int(input("Ingrese el monto que desea ingresar"))
+        while True:
+            MontoNuevo = int(input("Ingrese el monto que desea ingresar"))
+            if MontoNuevo > 0:
+                break
+            else: print("Ingrese un monto valido")
         IngresarMonto(MontoNuevo)
     elif opcion == 3:
         ConsultarSaldo()
     elif opcion == 4:
-        NuevoPin = int(input("Ingrese su nuevo Pin: "))
+        while True:
+            try:
+                NuevoPin = input("Ingrese su nuevo Pin: ")
+                
+            except ValueError:
+                print("El pin solo puede estar conformado por numeros")
+            if len(NuevoPin) == 4 and NuevoPin.isdigit():
+                NuevoPin = int(NuevoPin)
+                break
+            else:
+                print("El pin dee tener 4 digitos")
         CambiarPin(NuevoPin)
     elif opcion == 5:
         import random
         id = random.randint(1000000, 9999999)
 
         print("Ingrese su nombre")
-        nombre = input().title()
+        try:
+            nombre = input().title()
+        except ValueError:
+            print("Ingrese un nombre valido")
 
         print("ingrese un pin")
-        pin = int(input())
+        while True:
+            try:
+                pin = input("Ingrese un pin: ")
+            except ValueError:
+                print("El pin solo puede estar conformado por numeros")
+            if len(pin) == 4 and pin.isdigit():
+                pin = int(pin)
+                break
+            else:
+                print("El pin debe tener 4 digitos")
 
         print("Ingrese su monto inicial")
-        montoI = float(input())
+        while True:
+            try:
+                montoI = float(input())
+            except ValueError:
+                print("ingrese un monto valido")
+                continue
+            if montoI > 0:
+                break
+            else:
+                print("ingrese un monto valido")
 
         NuevoUsuario(nombre, id, pin, montoI)
     elif opcion == 6:
