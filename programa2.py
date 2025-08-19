@@ -1,3 +1,6 @@
+#Flujo Principal
+
+#Diccionario de Usuario
 Usuarios = {}
 contador_id = 1000000  # ID inicial
 
