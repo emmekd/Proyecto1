@@ -1,9 +1,18 @@
 Usuarios = {}
 print("Cajero Automatico")
 
-def NuevoUsuario(Nombre, ID, PIN):
-    print(f"Nombre: {nombre}, ID: {id}, Pin: ****")
-    Usuarios[nombre] = {"Id" : id, "Pin": pin}
+def NuevoUsuario(Nombre, ID, PIN, MontoI):
+    print(f"Nombre: {nombre}, su ID es: {id}, Pin: ****")
+    Usuarios[Nombre] = {"Id" : ID, "Pin": PIN, "Monto": MontoI}
+
+def ConsultarSaldo():
+    buscar = input("ingrese el nombre de usuario").title()
+    for clave, valor in Usuarios.items():
+        if buscar == clave:
+            contraseña = int(input("ingrese su pin"))
+            if contraseña == clave["Pin"]:
+                print(f"su saldo es {clave["Monto"]}")
+
 
 while True:
     print("Ingrese una opcion")
@@ -32,7 +41,10 @@ while True:
 
         print("ingrese un pin")
         pin = int(input())
-        
-        NuevoUsuario(nombre, id, pin)
+
+        print("Ingrese su monto inicial")
+        montoI = float(input())
+
+        NuevoUsuario(nombre, id, pin, montoI)
     elif opcion == 6:
         break
