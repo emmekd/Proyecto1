@@ -4,8 +4,8 @@
 <img width="480" height="720" alt="image" src="https://github.com/user-attachments/assets/46032f35-302d-4a0f-9d25-09b93fdd0805" />
 
 Roles de los integrantes: 
-- Interfaz y flujo: Keila y Zoe
-- Operaciones matemáticas y Lógica:  Jorge y josé
-- Control de errores y validaciones: Morelia
+- Interfaz y flujo: Keila Belinda Puac Gómez-1660625 y Zoe Andre López Miche-1591125
+- Operaciones matemáticas y Lógica:  Jorge Luis Villagrán González-1505225 y José Julián Tecum Ordóñez-1505225
+- Control de errores y validaciones: Morelia Gonzalez Ixcot-1536325
 - Documentación: Amelia
 - Repositorio: Amelia
