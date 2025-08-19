@@ -28,6 +28,11 @@ def IngresarMonto(NuevoMonto):
     if usuario:
         Usuarios[usuario]['Monto'] += NuevoMonto
 
+def RetirarMonto(Retirar):
+    usuario = IniciarSesion()
+    if usuario:
+        Usuarios[usuario]['Monto'] -= Retirar
+        print(f"Ha retirado {Retirar}, su saldo actual es: {Usuarios[usuario]['Monto']}")
 
 while True:
     print("Ingrese una opcion")
@@ -40,12 +45,13 @@ while True:
     opcion = int(input())
 
     if opcion == 1:
-        print()
+        retiro = int(input("Ingrese el monto que desea retirar"))
+        RetirarMonto(retiro)
     elif opcion == 2:
-        print()
-    elif opcion == 3:
-        MontoNuevo = int(input())
+        MontoNuevo = int(input("Ingrese el monto que desea ingresar"))
         IngresarMonto(MontoNuevo)
+    elif opcion == 3:
+        ConsultarSaldo()
     elif opcion == 4:
         NuevoPin = input("Ingrese su nuevo Pin")
         CambiarPin(NuevoPin)
