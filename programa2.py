@@ -22,7 +22,7 @@ while True:
             if cantidad >= 0 and cantidad <= saldo:
                 print(f"Cantidad retirada: {cantidad}")
         else:
-            print("PIN incorrecto")
+            print(" Saldo insuficiente")
         
     elif opcion == 2:
         print()
