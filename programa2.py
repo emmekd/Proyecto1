@@ -2,7 +2,7 @@ Usuarios = {}
 contador_id = 1000000  # ID inicial
 
 print("--- Cajero Automático ---")
-
+#Funcion para crear  un nuevo usuario
 def NuevoUsuario(nombre, id, pin, montoI=0):
     if nombre in Usuarios:
         print("El usuario ya existe.")
@@ -24,7 +24,7 @@ while True:
     except ValueError:
         print("Debe ingresar un número del 1 al 6.")
         continue
-
+# Opciones que requieren autenticación del usuario
     if opcion in [1, 2, 3, 4]:
         if not Usuarios:
             print("No hay usuarios registrados.")
@@ -34,7 +34,7 @@ while True:
         if nombre not in Usuarios:
             print("Usuario no encontrado.")
             continue
-
+#Validacion del pin
         try:
             pin = int(input("Ingrese su PIN: "))
         except ValueError:
@@ -44,7 +44,7 @@ while True:
         if Usuarios[nombre]["Pin"] != pin:
             print("PIN incorrecto.")
             continue
-
+#Retiro de dinero
         if opcion == 1:  # Retirar
             try:
                 monto = float(input("Monto a retirar: "))
@@ -57,7 +57,7 @@ while True:
                     print(f"Retiro exitoso. Saldo actual: Q{Usuarios[nombre]['Saldo']:.2f}")
             except ValueError:
                 print("Monto inválido.")
-
+#Deposito de dinero
         elif opcion == 2:  # Ingresar
             try:
                 monto = float(input("Monto a depositar: "))
@@ -68,7 +68,7 @@ while True:
                     print(f"Depósito exitoso. Saldo actual: Q{Usuarios[nombre]['Saldo']:.2f}")
             except ValueError:
                 print("Monto inválido.")
-
+#CONSULTAR SALDO
         elif opcion == 3:  # Consultar saldo
             print(f"Saldo de {nombre}: Q{Usuarios[nombre]['Saldo']:.2f}")
 
