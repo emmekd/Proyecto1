@@ -1,5 +1,6 @@
 import random
 
+<<<<<<< HEAD
 Usuarios = {}
 print("Cajero Automático")
 
@@ -9,6 +10,20 @@ def NuevoUsuario(nombre, id, pin):
     else:
         Usuarios[nombre] = {"Id": id, "Pin": pin, "Saldo": 0}  # saldo inicial
         print(f"Usuario creado: {nombre}, ID: {id}, Pin: ****")
+=======
+def NuevoUsuario(Nombre, ID, PIN, MontoI):
+    print(f"Nombre: {nombre}, su ID es: {id}, Pin: ****")
+    Usuarios[Nombre] = {"Id" : ID, "Pin": PIN, "Monto": MontoI}
+
+def ConsultarSaldo():
+    buscar = input("ingrese el nombre de usuario").title()
+    for clave, valor in Usuarios.items():
+        if buscar == clave:
+            contraseña = int(input("ingrese su pin"))
+            if contraseña == clave["Pin"]:
+                print(f"su saldo es {clave["Monto"]}")
+
+>>>>>>> cd713a3c18b5bbd90db99ef54dd0010dce35d113
 
 while True:
     print("\nIngrese una opción")
@@ -98,8 +113,18 @@ while True:
             print("El PIN debe ser numérico.")
             continue
 
+<<<<<<< HEAD
         NuevoUsuario(nombre, id, pin)
 
+=======
+        print("ingrese un pin")
+        pin = int(input())
+
+        print("Ingrese su monto inicial")
+        montoI = float(input())
+
+        NuevoUsuario(nombre, id, pin, montoI)
+>>>>>>> cd713a3c18b5bbd90db99ef54dd0010dce35d113
     elif opcion == 6:
         print("Saliendo del cajero...")
         break
