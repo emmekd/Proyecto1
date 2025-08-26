@@ -26,15 +26,20 @@ class Cuenta:
         def depositar(nuevo):
             self.__Saldo += nuevo
             print(f"saldo: {self.__Saldo}")
-
-        try:
-            monto = int(input("Ingrese el monto"))
-        except ValueError:
-            print("Ingrese un monto valido")
-        try:
-            opcion = int(input("Desea depositar o retirar?(1 = R, 2 = D)"))
-        except ValueError:
-            print("ingrese una opcion valida")
+        while True:
+            try:
+                monto = int(input("Ingrese el monto"))
+            except ValueError:
+                print("Ingrese un monto valido")
+            if monto > 0:
+                break
+        while True:
+            try:
+                opcion = int(input("Desea depositar o retirar?(1 = R, 2 = D)"))
+            except ValueError:
+                print("ingrese una opcion valida")
+            if opcion == 1 or opcion == 2:
+                break
         if opcion == 1:
             retirar(monto)
         if opcion == 2:
