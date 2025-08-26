@@ -24,7 +24,7 @@ class Cuenta:
             print(f"saldo: {self.__Saldo}")
 
         monto = int(input("Ingrese el monto"))
-        opcion = int(input("Desea depositar o retirar?"))
+        opcion = int(input("Desea depositar o retirar?(1 = R, 2 = D)"))
         if opcion == 1:
             retirar(monto)
         if opcion == 2:
