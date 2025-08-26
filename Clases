@@ -1,0 +1,21 @@
+Usuarios = {}
+
+contador_id = 1000000  # ID inicial
+
+class Cuenta:
+    def __init__(self, Nombre, Id, Pin, Saldo):
+        self.Nombre = Nombre
+        self.Id = Id
+        self.__Pin = Pin
+        self.Saldo = Saldo
+    def NuevoUsuario(self):
+        Usuarios[self.Nombre] = {
+            "ID": self.Id,
+            "Pin": self.__Pin,
+            "Saldo": self.Saldo}
+
+
+C = Cuenta("Juan", 123456, 1234, 1000)
+C.NuevoUsuario()
+
+
