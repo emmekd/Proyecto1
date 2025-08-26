@@ -18,6 +18,21 @@ def NuevoUsuario(nombre, id, pin, montoI=0):
         Usuarios[nombre] = {"Id": id, "Pin": pin, "Saldo": montoI}
         print(f"Usuario creado: {nombre}, ID: {id}, Pin: ****, Saldo inicial: Q{montoI:.2f}")
 
+#Funcion de la opcion uno del menu
+def opcion1():
+    try:
+        monto = float(input("Monto a retirar: "))
+        if monto <= 0:
+            print("El monto debe ser positivo.")
+        elif monto > Usuarios[nombre]["Saldo"]:
+            print("Fondos insuficientes.")
+        else:
+            Usuarios[nombre]["Saldo"] -= monto
+            print(f"Retiro exitoso. Saldo actual: Q{Usuarios[nombre]['Saldo']:.2f}")
+    except ValueError:
+                print("Monto inválido.")
+
+
 
 #Menu de usuario
 while True:
@@ -28,7 +43,7 @@ while True:
     print("4 = Cambiar PIN")
     print("5 = Crear nuevo usuario")
     print("6 = Salir")
-    
+
     #Validacion de errores
     try:
         opcion = int(input("Opción: "))
@@ -36,6 +51,7 @@ while True:
         print("Debe ingresar un número del 1 al 6.")
         continue
 
+    #Valida las opciones del menu
     if opcion in [1, 2, 3, 4]:
         if not Usuarios:
             print("No hay usuarios registrados.")
@@ -48,6 +64,8 @@ while True:
 
         try:
             pin = int(input("Ingrese su PIN: "))
+
+        #Valida que el pin sea numerico
         except ValueError:
             print("El PIN debe ser numérico.")
             continue
@@ -57,17 +75,7 @@ while True:
             continue
 
         if opcion == 1:  # Retirar
-            try:
-                monto = float(input("Monto a retirar: "))
-                if monto <= 0:
-                    print("El monto debe ser positivo.")
-                elif monto > Usuarios[nombre]["Saldo"]:
-                    print("Fondos insuficientes.")
-                else:
-                    Usuarios[nombre]["Saldo"] -= monto
-                    print(f"Retiro exitoso. Saldo actual: Q{Usuarios[nombre]['Saldo']:.2f}")
-            except ValueError:
-                print("Monto inválido.")
+            opcion1()
 
         elif opcion == 2:  # Ingresar
             try:
