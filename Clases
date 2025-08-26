@@ -6,13 +6,16 @@ class Cuenta:
     def __init__(self, Nombre, Id, Pin, Saldo):
         self.Nombre = Nombre
         self.Id = Id
-        self.Pin = Pin
+        self.__Pin = Pin
         self.Saldo = Saldo
     def NuevoUsuario(self):
         Usuarios[self.Nombre] = {
             "ID": self.Id,
-            "Pin": self.Pin,
+            "Pin": self.__Pin,
             "Saldo": self.Saldo}
+
 
 C = Cuenta("Juan", 123456, 1234, 1000)
 C.NuevoUsuario()
+
+
