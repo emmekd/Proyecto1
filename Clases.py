@@ -1,7 +1,6 @@
 import random
 
 Usuarios = {}
-
 class Cuenta:
     def __init__(self, Nombre, Id, Pin, Saldo):
         self.Nombre = Nombre
@@ -28,8 +27,14 @@ class Cuenta:
             self.__Saldo += nuevo
             print(f"saldo: {self.__Saldo}")
 
-        monto = int(input("Ingrese el monto"))
-        opcion = int(input("Desea depositar o retirar?(1 = R, 2 = D)"))
+        try:
+            monto = int(input("Ingrese el monto"))
+        except ValueError:
+            print("Ingrese un monto valido")
+        try:
+            opcion = int(input("Desea depositar o retirar?(1 = R, 2 = D)"))
+        except ValueError:
+            print("ingrese una opcion valida")
         if opcion == 1:
             retirar(monto)
         if opcion == 2:
