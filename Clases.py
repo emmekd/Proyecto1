@@ -1,6 +1,6 @@
-Usuarios = {}
+import random
 
-contador_id = 1000000  # ID inicial
+Usuarios = {}
 
 class Cuenta:
     def __init__(self, Nombre, Id, Pin, Saldo):
@@ -9,11 +9,16 @@ class Cuenta:
         self.__Pin = Pin
         self.__Saldo = Saldo
     def NuevoUsuario(self):
+        rand = random.randint(1000000, 9999999)
+
+        self.Id = rand
         Usuarios[self.Nombre] = {
             "ID": self.Id,
             "Pin": self.__Pin,
             "Saldo": self.__Saldo}
     def get(self):
+        print(f"Nombre: {self.Nombre}")
+        print(f"Id: {self.Id}")
         print(f"Saldo: {self.__Saldo}")
     def set(self):
         def retirar(nuevo):
@@ -30,7 +35,7 @@ class Cuenta:
         if opcion == 2:
             depositar(monto)
 
-C = Cuenta("Juan", 123456, 1234, 1000)
+C = Cuenta("Juan", None, 1234, 1000)
 C.NuevoUsuario()
 C.get()
 C.set()
